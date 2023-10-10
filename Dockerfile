@@ -20,10 +20,6 @@ RUN cargo build --release
 
 FROM alpine:latest
 
-RUN adduser -u 999 -D -S -s /bin/sh appuser
-
-USER appuser
-
 COPY --from=builder /app/target/release/axum-graphql /app
 
 WORKDIR /app
