@@ -18,12 +18,12 @@ COPY . .
 
 RUN cargo build --release
 
-FROM debian:bookworm-slim
+FROM alpine:latest
 
 RUN mkdir -p /app
 
-RUN groupadd -g 999 appuser && \
-    useradd -r -u 999 -g appuser appuser
+RUN addgroup -g 999 appuser && \
+    adduser -D -u 999 -G appuser appuser
 
 USER appuser
 
