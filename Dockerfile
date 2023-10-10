@@ -21,7 +21,7 @@ RUN cargo build --release
 FROM alpine:latest
 
 RUN addgroup -g 999 appuser && \
-    adduser -D -u 999 -G appuser appuser
+    adduser -u 999 -G appuser -s /bin/sh -D appuser
 
 USER appuser
 
