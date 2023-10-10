@@ -18,7 +18,14 @@ COPY . .
 
 RUN cargo build --release
 
-FROM alpine:latest
+FROM debian:bookworm-slim
+
+RUN mkdir -p /app
+
+RUN groupadd -g 999 appuser && \
+    useradd -r -u 999 -g appuser appuser
+
+USER appuser
 
 COPY --from=builder /app/target/release/axum-graphql /app
 
